@@ -105,3 +105,6 @@ venv.bak/
 .next
 .vercel
 node_moduleshaunted-ai
+node_modules
+
+haunted-ai/bin

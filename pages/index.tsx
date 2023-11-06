@@ -154,13 +154,13 @@ export default function Home() {
                 htmlFor="favorite-books"
                 className="block text-gray-700 font-bold mb-2"
               >
-                Would you like a halloween movie recommendation?
+                What are you afraid of?
               </label>
               <Input
                 type="text"
                 id="favorite-books"
                 name="favorite-books"
-                placeholder="I'd like to learn..."
+                placeholder="Jellyfish..."
                 className="block w-full px-4 py-2 border border-gray-300 bg-white rounded-md shadow-sm "
                 value={query}
                 onChange={(e) => {
@@ -253,13 +253,29 @@ export default function Home() {
       <footer className="justify-center items-center bg-gray-600 text-white h-10 flex">
         Made with ❤️ by &nbsp;
         <a
+          href="https://x.com/yaneq/"
+          target="_blank"
+          className="underline text-blue-200"
+        >
+          @yaneq
+        </a>
+        &nbsp;- forked from&nbsp;
+        <a
+          href="https://github.com/weaviate/BookRecs"
+          target="_blank"
+          className="underline text-blue-200"
+        >
+          BookRecs
+        </a>
+        &nbsp;by&nbsp;
+        <a
           href="https://x.com/aj__chan/"
           target="_blank"
           className="underline text-blue-200"
         >
           @aj__chan
-        </a>{" "}
-        &nbsp; and built with &nbsp;
+        </a>
+        &nbsp;-&nbsp;built with&nbsp;
         <a
           target="_blank"
           href="https://weaviate.io/"
@@ -267,7 +283,6 @@ export default function Home() {
         >
           Weaviate
         </a>
-        .
       </footer>
     </div>
   );
