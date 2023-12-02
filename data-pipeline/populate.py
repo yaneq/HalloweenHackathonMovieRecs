@@ -28,47 +28,34 @@ class_obj = {
 
 client.schema.create_class(class_obj)
 
-f = open("../data/imdb_top_1000.csv", "r")
+f = open("../data/mymoviedb.csv", "r")
 current_movie = None
 try:
     with client.batch as batch:  # Initialize a batch process
         batch.batch_size = 100
         reader = csv.reader(f)
-        # Iterate through each row of data
-        for book in reader:
-            current_movie = book
-            # 0 - isbn13
-            # 1 - isbn10
-            # 2 - title
-            # 3 - subtitle
-            # 4 - authors
-            # 5 - categories
-            # 6 - thumbnail
-            # 7 - description
-            # 8 - published_year
-            # 9 - average_rating
-            # 10 - num_pages
-            # 11 - ratings_count
 
+        # skip header
+        next(reader)
+
+        # Iterate through each row of data
+        for movie in reader:
+            current_movie = movie
             properties = {
-                # "isbn13": book[0],
-                # "isbn10": book[1],
-                "poster": book[0],
-                "title": book[1],
-                "summary": book[7],
-                # "authors": book[4],
-                # "categories": book[5],
-                # "thumbnail": book[6],
-                # "description": book[7],
-                # "published_year": book[8],
-                # "average_rating": book[9],
-                # "num_pages": book[10],
-                # "ratings_count": book[11],
+                "release_date": movie[0],
+                "title": movie[1],
+                "summary": movie[2],
+                "ratings_count": int(movie[4]),
+                "rating_average": float(movie[5]),
+                "genre": movie[7],
+                "poster": movie[8],
             }
 
-            batch.add_data_object(data_object=properties, class_name="Movie")
+            if properties["rating_average"] > 7:
+                batch.add_data_object(data_object=properties, class_name="Movie")
+                print(f"Added {properties['title']} ({properties['rating_average']})")
             # print(f"{book[2]}: {uuid}", end='\n')
 except Exception as e:
-    print(f"something happened {e}. Failure at {current_book}")
+    print(f"something happened {e}. Failure at {current_movie}")
 
 f.close()
